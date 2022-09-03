@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 // MARK: - Project
-let project = Project.app(name: "CorgiClubApp",
+let project = Project.app(name: "CnCStarsApp",
                           platform: .iOS,
                           externalDependencies: ["JGProgressHUD"],
                           targetDependancies: [],
