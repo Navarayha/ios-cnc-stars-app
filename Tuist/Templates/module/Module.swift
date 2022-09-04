@@ -1,7 +1,7 @@
 import ProjectDescription
 import Foundation
 
-let companyName = "Sonomos"
+let companyName = "Coffe&Code"
 var defaultYear: String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy"
