@@ -9,41 +9,39 @@
 import UIKit
 import Common
 import LoginUI
-import FeedUI
-import AuthService
+import PeopleUI
 
 public class HomeCoordinator: LoginDelegate {
    
-
     var loginVC = LoginViewController()
     
-    var feedVC = FeedViewController()
+    var peopleVC = PeopleViewController()
     
-    public init() {
-        
+    var authService:AuthService!
+    
+    public init(authService: AuthService) {
+        self.authService = authService
+        configureLoginVC()
     }
-    
     
     public func configureLoginVC() -> LoginViewController {
         loginVC.delegate = self
         return loginVC
     }
     
-    public func configureFeedVC() {
-        
+    public func configurePeopleVC() -> PeopleViewController {
+        peopleVC.view.backgroundColor = .systemBlue
+        return peopleVC
     }
     
-    public func doLogin(vc: UIViewController) {
-        //vc.present(feedVC, animated: true)
-        
-        if FirebaseAuthService.instance.login(login: "1", password: "2") {
+    public func login(login: String, password: String) {
+        if authService.login(login: login, password: password) {
             let appDelegate = UIApplication.shared.delegate
             guard let window = appDelegate?.window else { return }
-            window?.rootViewController = feedVC
+            window?.rootViewController = configurePeopleVC()
         } else {
             print("wrong pass")
         }
-
     }
     
 }

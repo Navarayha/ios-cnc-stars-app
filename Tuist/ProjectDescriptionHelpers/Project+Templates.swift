@@ -1,6 +1,6 @@
 import ProjectDescription
 
-let reverseOrganizationName = "com.sonomos"
+let reverseOrganizationName = "org.coffee-and-code"
 
 let featuresPath = "Features"
 let exampleAppSuffix = "ExampleApp"
@@ -54,7 +54,7 @@ extension Project {
                            targetDependancies: [TargetDependency],
                            moduleTargets: [Module]) -> Project {
         
-        let organizationName = "Sonomos.com"
+        let organizationName = "Coffe&Code"
         var dependencies = moduleTargets.map { TargetDependency.target(name: $0.name) }
         dependencies.append(contentsOf: targetDependancies)
         
