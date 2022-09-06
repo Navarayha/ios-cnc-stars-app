@@ -5,4 +5,4 @@
 - git clone git@github.com:Navarayha/ios-cnc-club-app.git
 - cd ios-corgi-club-app
 - tuist fetch
-- tuist generate или tust generate xxxExmapleApp
+- tuist generate или tuist generate xxxExmapleApp
