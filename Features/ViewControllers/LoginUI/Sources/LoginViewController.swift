@@ -16,24 +16,45 @@ public class LoginViewController: UIViewController {
     var loginTextField = CNCTextField(placeholder: "Login")
     var passwordTextField = CNCTextField(placeholder: "Password")
     var loginButton = CNCButton(backgroundColor: .systemGreen, title: "Login")
+    var registerButton = CNCButton(backgroundColor: .blue, title: "Register")
+    var appLogoImage = CNCAppLogo(image: UIImage(named: "logo"))
+    
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         print(Util.doStuff())
-        view.backgroundColor = .systemBackground
-
+        view.backgroundColor = .lightGray
+        
+        configureAppLogoImage()
         configureLoginTextField()
         configurePasswordTextField()
-        configureButton()
+        configureLoginButton()
+        configureRegisterButton()
+        
     }
+    
+    
+    func configureAppLogoImage() {
+        view.addSubview(appLogoImage)
+        appLogoImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            appLogoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            appLogoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            appLogoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            appLogoImage.heightAnchor.constraint(equalToConstant: 200),
+        ])
+    }
+    
+    
     
     func configureLoginTextField() {
         view.addSubview(loginTextField)
         loginTextField.delegate = self
         
         NSLayoutConstraint.activate([
-            loginTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            loginTextField.topAnchor.constraint(equalTo: appLogoImage.bottomAnchor, constant: 12),
             loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             loginTextField.heightAnchor.constraint(equalToConstant: 50)
@@ -52,12 +73,13 @@ public class LoginViewController: UIViewController {
         ])
     }
     
-    func configureButton() {
+    func configureLoginButton() {
         view.addSubview(loginButton)
-        loginButton.setTitle("LOGIN", for: .normal)
+        loginButton.setTitle("Login", for: .normal)
         loginButton.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
-        loginButton.backgroundColor = .systemPink
+        loginButton.backgroundColor = .blue
         loginButton.translatesAutoresizingMaskIntoConstraints = false
+        
         
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 12),
@@ -67,11 +89,32 @@ public class LoginViewController: UIViewController {
         ])
     }
     
+    func configureRegisterButton() {
+        view.addSubview(registerButton)
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.setTitleColor(.blue, for: .normal)
+        registerButton.addTarget(self, action: #selector(registerPressed), for: .touchUpInside)
+        registerButton.backgroundColor = .clear
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        NSLayoutConstraint.activate([
+            registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 12),
+            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            registerButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
     @objc func loginPressed() {
         delegate.login(login: loginTextField.text ?? "",
                        password: passwordTextField.text ?? "")
     }
     
+    @objc func registerPressed() {
+        delegate.login(login: loginTextField.text ?? "",
+                       password: passwordTextField.text ?? "")
+    }
 
 }
 
@@ -80,3 +123,16 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+
+//extension LoginViewController {
+//
+//    func viewAnchors(_ sv: UIImageView) {
+//
+//        NSLayoutConstraint.activate([
+//            sv.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+//            sv.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+//            sv.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+//            sv.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+//        ])
+//    }
+//}
