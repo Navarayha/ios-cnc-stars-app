@@ -4,7 +4,7 @@ import ProjectDescriptionHelpers
 // MARK: - Project
 let project = Project.app(name: "CnCStarsApp",
                           platform: .iOS,
-                          externalDependencies: ["JGProgressHUD"],
+                          externalDependencies: [],
                           targetDependancies: [],
                           moduleTargets: [
                               // Core
@@ -26,9 +26,6 @@ func makeHomeCoordinatorModule() -> Module {
             path: "HomeCoordinator",
             frameworkDependancies: [
                 .target(name: "Common"),
-                .target(name: "LoginUI"),
-                .target(name: "PeopleUI"),
-                .target(name: "FirebaseAuthService")
             ],
             exampleDependencies: [
                 .target(name: "MockAuthService")
@@ -62,8 +59,14 @@ func makeCommonUIModule() -> Module {
 func makeFirebaseAuthServiceModule() -> Module {
     return Module(name: "FirebaseAuthService",
             path: "Services/FirebaseAuthService",
-            frameworkDependancies: [.target(name: "Common")],
-            exampleDependencies: [.target(name: "Common")],
+            frameworkDependancies: [
+                .target(name: "Common")
+            ],
+            exampleDependencies: [
+                .external(name: "Alamofire"),
+                .external(name: "FirebaseDatabase"),
+                .external(name: "FirebaseAuth")
+            ],
             frameworkResources: ["Sources/**/*.storyboard", "Resources/**"],
             exampleResources: ["Resources/**"],
             testResources: [])
@@ -82,7 +85,13 @@ func makeMockAuthServiceModule() -> Module {
 func makeLoginUIModule() -> Module {
     return Module(name: "LoginUI",
             path: "ViewControllers/LoginUI",
-            frameworkDependancies: [.target(name: "Common"), .target(name: "CommonUI")],
+            frameworkDependancies: [
+                .target(name: "Common"),
+                .target(name: "CommonUI"),
+                .external(name: "Alamofire"),
+                .external(name: "FirebaseDatabase"),
+                .external(name: "FirebaseAuth")
+            ],
             exampleDependencies: [],
             frameworkResources: ["Resources/**"],
             exampleResources: ["Resources/**"],

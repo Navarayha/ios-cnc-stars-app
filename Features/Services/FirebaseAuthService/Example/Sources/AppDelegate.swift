@@ -1,5 +1,7 @@
 import UIKit
 import Common
+import Alamofire
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,6 +12,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
 
 
+        AF.request("https://dummyjson.com/products/1").response { response in
+            debugPrint(response)
+        }
+        
+        FirebaseApp.configure()
+        
         return true
     }
 
