@@ -1,8 +1,8 @@
-ios-corgi-club-app
-Для сборки проека:
+Приложение для мотивации людей с помощью рейтингов.
 
-git clone git@github.com:Navarayha/ios-corgi-club-app.git
-Установить tuist: curl -Ls https://install.tuist.io | bash
-войти в папку проекта cd ios-corgi-club-app
-tuist fetch
-tuist generate или tust generate xxxExmapleApp
+Для сборки/запуска проека:
+- Установить tuist: curl -Ls https://install.tuist.io | bash
+- git clone git@github.com:Navarayha/ios-cnc-club-app.git
+- cd ios-corgi-club-app
+- tuist fetch
+- tuist generate или tust generate xxxExmapleApp
