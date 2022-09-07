@@ -17,14 +17,13 @@ public class LoginViewController: UIViewController {
     var passwordTextField = CNCTextField(placeholder: "Password")
     var loginButton = CNCButton(backgroundColor: .systemGreen, title: "Login")
     var registerButton = CNCButton(backgroundColor: .blue, title: "Register")
-    var appLogoImage = CNCAppLogo(image: UIImage(named: "logo"))
+    var appLogoImage = CNCAppLogo(image: CommonUIAsset.logo.image)
     
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         print(Util.doStuff())
-        view.backgroundColor = .lightGray
         
         configureAppLogoImage()
         configureLoginTextField()
@@ -40,10 +39,12 @@ public class LoginViewController: UIViewController {
         appLogoImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            
             appLogoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             appLogoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             appLogoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            appLogoImage.heightAnchor.constraint(equalToConstant: 200),
+            appLogoImage.heightAnchor.constraint(equalToConstant: appLogoImage.bounds.width - 150)
+
         ])
     }
     
@@ -124,15 +125,3 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
-//extension LoginViewController {
-//
-//    func viewAnchors(_ sv: UIImageView) {
-//
-//        NSLayoutConstraint.activate([
-//            sv.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//            sv.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//            sv.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//            sv.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//        ])
-//    }
-//}
