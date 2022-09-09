@@ -125,7 +125,8 @@ public class LoginViewController: UIViewController {
     
     @objc func registerPressed() {
         let signUpViewController = SignUpViewController()
-        present(signUpViewController, animated: true)
+//        present(signUpViewController, animated: true)
+        navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
 
