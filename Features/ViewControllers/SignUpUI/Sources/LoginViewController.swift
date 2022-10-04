@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  CorgiClubApp
-//
-//  Created by Afir Thes on 02.09.2022.
-//
 
 import UIKit
 import Common
@@ -18,13 +12,13 @@ public class LoginViewController: UIViewController {
     var loginButton = CNCButton(backgroundColor: .systemGreen, title: "Login")
     var registerButton = CNCButton(backgroundColor: .blue, title: "Register")
     var appLogoImage = CNCAppLogo(image: CommonUIAsset.logo.image)
-    private lazy var main = LoginViewController()
+    
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         print(Util.doStuff())
-        setupNavigationViewController(viewController: main, title: "222", image: "logo")
+        
         configureAppLogoImage()
         configureLoginTextField()
         configurePasswordTextField()
@@ -33,21 +27,8 @@ public class LoginViewController: UIViewController {
         
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
     
-    }
-    
-    private func setupNavigationViewController (viewController: UIViewController, title: String, image: String) -> UIViewController {
-            let navigationVC = UINavigationController(rootViewController: viewController)
-           
-        navigationVC.navigationBar.tintColor = .lightGray
-            return navigationVC
-        }
-    
-    
-    private func configureAppLogoImage() {
+    func configureAppLogoImage() {
         view.addSubview(appLogoImage)
         appLogoImage.translatesAutoresizingMaskIntoConstraints = false
         
@@ -61,7 +42,9 @@ public class LoginViewController: UIViewController {
         ])
     }
     
-    private func configureLoginTextField() {
+    
+    
+    func configureLoginTextField() {
         view.addSubview(loginTextField)
         loginTextField.delegate = self
         
@@ -73,7 +56,7 @@ public class LoginViewController: UIViewController {
         ])
     }
     
-    private func configurePasswordTextField() {
+    func configurePasswordTextField() {
         view.addSubview(passwordTextField)
         passwordTextField.delegate = self
         
@@ -85,7 +68,7 @@ public class LoginViewController: UIViewController {
         ])
     }
     
-    private func configureLoginButton() {
+    func configureLoginButton() {
         view.addSubview(loginButton)
         loginButton.setTitle("Login", for: .normal)
         loginButton.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
@@ -101,7 +84,7 @@ public class LoginViewController: UIViewController {
         ])
     }
     
-    private func configureRegisterButton() {
+    func configureRegisterButton() {
         view.addSubview(registerButton)
         registerButton.setTitle("Register", for: .normal)
         registerButton.setTitleColor(.blue, for: .normal)
@@ -124,10 +107,10 @@ public class LoginViewController: UIViewController {
     }
     
     @objc func registerPressed() {
-        let signUpViewController = SignUpViewController()
-//        present(signUpViewController, animated: true)
-        navigationController?.pushViewController(signUpViewController, animated: true)
+        delegate.login(login: loginTextField.text ?? "",
+                       password: passwordTextField.text ?? "")
     }
+
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -135,3 +118,4 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+
